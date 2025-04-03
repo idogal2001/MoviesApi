@@ -7,8 +7,8 @@ const errorHandling = (
   res: Response,
   _: NextFunction
 ): void => {
-   res.sendStatus(error.code)
-  res.send({ message: `error ${error}` });
+    res.status(error.code).send({ message: `error ${error.message}` });
+
 };
 
 export default errorHandling;
