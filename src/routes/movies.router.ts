@@ -4,7 +4,7 @@ import {
   fetchMovieByIDController,
   addMovieController,
   deleteMovieByIDController,
-  editMoviesController
+  editMoviesController,
 } from "../controllers/movies.controller";
 
 const moviesRouter = express.Router();
@@ -15,7 +15,7 @@ moviesRouter.get("/", fetchMoviesController);
 
 moviesRouter.post("/", addMovieController);
 
-moviesRouter.delete ("/", deleteMovieByIDController);
+moviesRouter.delete("/:id", deleteMovieByIDController);
 
 moviesRouter.put("/", editMoviesController);
 

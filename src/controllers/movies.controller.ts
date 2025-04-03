@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   fetchMoviesService,
   fetchMovieByIDService,
@@ -9,44 +9,60 @@ import {
 
 export const fetchMovieByIDController = (
   { params: { id } }: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void => {
   try {
     res.json(fetchMovieByIDService(+id));
   } catch (e) {
-    res.status(404).send("Sorry can't find that!");
+    next(e);
   }
 };
 
-export const fetchMoviesController = (_: Request, res: Response): void => {
-  res.json(fetchMoviesService());
+export const fetchMoviesController = (
+  _: Request,
+  res: Response,
+  next: NextFunction
+): void => {
+  try {
+    res.json(fetchMoviesService());
+  } catch (e) {
+    next(e);
+  }
 };
 
 export const addMovieController = (
   { body: requestData }: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void => {
-  res.json(addMovieService(requestData));
+  try {
+    res.json(addMovieService(requestData));
+  } catch (e) {
+    next(e);
+  }
 };
 
 export const deleteMovieByIDController = (
   { params: { id } }: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void => {
   try {
     res.json(deleteMovieByIDService(+id));
   } catch (e) {
-    res.status(404).send("Sorry can't find that!");
+    next(e);
   }
 };
 
 export const editMoviesController = (
   { body: newMovies }: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void => {
   try {
     res.json(editMoviesService(newMovies));
   } catch (e) {
-    res.status(404).send("Sorry can't find that!");
+    next(e);
   }
 };
