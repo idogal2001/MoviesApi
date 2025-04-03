@@ -3,7 +3,7 @@ import {
   fetchMovieByID,
   addMovie,
   deleteMovie,
-  editMovie
+  editMovie,
 } from "src/repositories/movies.repository";
 import { Movie } from "src/types/movie";
 
