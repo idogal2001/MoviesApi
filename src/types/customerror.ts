@@ -1,9 +1,11 @@
 import { StatusCodes } from "http-status-codes";
 
 export class CustomError extends Error {
-  constructor(message: string) {
+  code: StatusCodes;
+
+  constructor(message: string, code: StatusCodes) {
     super(message);
-    this.name = StatusCodes.NOT_FOUND.toString();
+    this.code = code;
 
     Object.setPrototypeOf(this, CustomError.prototype);
   }
